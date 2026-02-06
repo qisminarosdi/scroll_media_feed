@@ -1,37 +1,48 @@
-// lib/views/widgets/empty_view.dart
 import 'package:flutter/material.dart';
 
 class EmptyView extends StatelessWidget {
-  const EmptyView({Key? key}) : super(key: key);
+  const EmptyView({super.key});
+
+  static const Color _primaryColor = Color(0xFF705196);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(32.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.inbox_outlined,
-              size: 80,
-              color: Colors.grey[400],
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: _primaryColor.withValues(alpha:0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.photo_library_outlined,
+                size: 72,
+                color: _primaryColor,
+              ),
             ),
             const SizedBox(height: 24),
-            Text(
-              'No posts available',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[700],
-                  ),
+            const Text(
+              'No posts yet',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF1a1a1a),
+              ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             Text(
-              'Check back later or pull to refresh.',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.grey[500],
-                  ),
+              'Posts will appear here when available.\nPull down to refresh.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+                height: 1.5,
+              ),
               textAlign: TextAlign.center,
             ),
           ],

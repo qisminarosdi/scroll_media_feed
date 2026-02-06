@@ -1,29 +1,23 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'core/components/app_widget.dart';
 import 'controllers/feed_controller.dart';
-import 'views/screens/feed_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+  runApp(
+    ChangeNotifierProvider(
       create: (_) => FeedController(),
-      child: MaterialApp(
-        title: 'Media Feed',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
-        ),
-        home: const FeedScreen(),
-      ),
-    );
-  }
+      child: const MediaFeedApp(),
+    ),
+  );
 }
